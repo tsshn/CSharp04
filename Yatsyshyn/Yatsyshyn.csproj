@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{2388C641-4F7C-4E7D-BCE5-D30F70747CCB}</ProjectGuid>
+        <OutputType>WinExe</OutputType>
+        <RootNamespace>Yatsyshyn</RootNamespace>
+        <AssemblyName>Yatsyshyn</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <WarningLevel>4</WarningLevel>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466">
+          <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="System.Net.Http" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Xaml">
+            <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="System.Xml.Linq" />
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+    </ItemGroup>
+    <ItemGroup>
+        <ApplicationDefinition Include="App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </ApplicationDefinition>
+        <Compile Include="Auxiliary\Managers\FileManager.cs" />
+        <Compile Include="Auxiliary\DataStorage\IDataStorage.cs" />
+        <Compile Include="Auxiliary\DataStorage\SerializedDataStorage.cs" />
+        <Compile Include="Auxiliary\Exceptions\EmailExc.cs" />
+        <Compile Include="Auxiliary\Exceptions\TooOldExc.cs" />
+        <Compile Include="Auxiliary\Exceptions\UnbornExc.cs" />
+        <Compile Include="Auxiliary\Managers\LoaderManager.cs" />
+        <Compile Include="Auxiliary\Managers\NavigationManager.cs" />
+        <Compile Include="Auxiliary\Managers\SerializationManager.cs" />
+        <Compile Include="Auxiliary\Managers\StationManager.cs" />
+        <Compile Include="Auxiliary\Navigation\Navigation.cs" />
+        <Compile Include="Auxiliary\Navigation\IContentOwner.cs" />
+        <Compile Include="Auxiliary\Navigation\INavigatable.cs" />
+        <Compile Include="Auxiliary\Navigation\INavigationModel.cs" />
+        <Compile Include="Auxiliary\Navigation\InitializationNavigation.cs" />
+        <Compile Include="Auxiliary\Other\ILoaderOwner.cs" />
+        <Compile Include="Auxiliary\Other\RelayCommand.cs" />
+        <Compile Include="Auxiliary\Other\TemplateVM.cs" />
+        <Compile Include="ViewModels\Adder.cs" />
+        <Compile Include="ViewModels\Table.cs" />
+        <Compile Include="ViewModels\Editor.cs" />
+        <Compile Include="ViewModels\MainWindow.cs" />
+        <Compile Include="Views\Adder.cs">
+          <DependentUpon>Adder.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Table.cs">
+          <DependentUpon>Table.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Editor.cs">
+          <DependentUpon>Editor.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\MainWindow.xaml.cs">
+          <DependentUpon>MainWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="App.xaml.cs">
+            <DependentUpon>App.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Page Include="Views\Adder.xaml" />
+        <Page Include="Views\Table.xaml" />
+        <Page Include="Views\Editor.xaml" />
+        <Page Include="Views\MainWindow.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Models\Person.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="Properties\Resources.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Include="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

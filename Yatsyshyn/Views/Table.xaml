@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="Yatsyshyn.Views.Table"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Yatsyshyn.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="900">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Margin="5" Content="Refresh" Command="{Binding RefreshCommand}" />
+
+            <TextBlock Grid.Column="2" Margin="5" Text="Sort by: " VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <ComboBox Grid.Column="3" Margin="5" ItemsSource="{Binding SortList}"
+                      SelectedIndex="{Binding SortIndex, Mode=TwoWay}" HorizontalAlignment="Left" />
+
+            <TextBlock Grid.Column="4" Margin="5" Text="Filter By:" VerticalAlignment="Stretch" HorizontalAlignment="Right" />
+            <ComboBox Grid.Column="5" Margin="5" ItemsSource="{Binding FilterList}"
+                      SelectedIndex="{Binding FilterIndex, Mode=TwoWay}"  HorizontalAlignment="Left" />
+
+            <TextBox Grid.Column="6" Margin="5" ToolTip="Filter query" Text="{Binding FilterQuery, Mode=TwoWay}" />
+
+            <Button Grid.Column="7" Margin="5" Content="Filter" Command="{Binding FilterCommand}" />
+
+        </Grid>
+
+        <DataGrid Name="Grid" Margin="10" Grid.ColumnSpan="3" Grid.Row="1" IsReadOnly="True"
+                  SelectedItem="{Binding SelectedPerson, Mode=TwoWay}" SelectionUnit="FullRow"
+                  ItemsSource="{Binding PersonList, Mode=OneWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                  SelectionMode="Single" CanUserSortColumns="False" AutoGenerateColumns="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Birthday" Binding="{Binding BirthdayString}" />
+                <DataGridCheckBoxColumn Header="Adult" Binding="{Binding IsAdult, Mode=OneTime}" IsReadOnly="False" />
+                <DataGridTextColumn Header="Western Sign" Binding="{Binding WesternSign}" />
+                <DataGridTextColumn Header="Chinese Sign" Binding="{Binding ChineseSign}" />
+                <DataGridCheckBoxColumn Header="Birthday" Binding="{Binding IsBirthday, Mode=OneWay}"
+                                        IsReadOnly="False" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Add person" Grid.Column="0" Margin="30 5" Command="{Binding AddPersonCommand}" />
+            <Button Content="Edit person" Grid.Column="1" Margin="30 5" Command="{Binding EditPersonCommand}" />
+            <Button Content="Remove person" Grid.Column="2" Margin="30 5"
+                    Command="{Binding RemovePersonCommand}" />
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>
